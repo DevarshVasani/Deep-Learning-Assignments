@@ -43,4 +43,27 @@ This notebook covers the complete machine learning pipeline:
 - Loss and accuracy plots over epochs
 - Visualization of convergence behavior
 - Transfer learning phase markers
+### Task 6: Misclassification Analysis
+- **Objective**: Identify and analyze samples where models make incorrect predictions
+- **How It's Achieved**:
+  1. **Forward Pass on Test Set**: Pass all test images through both trained models without gradients
+  2. **Prediction Collection**: Gather predicted class for each image using `argmax()` on output logits
+  3. **Comparison with Ground Truth**: Compare predictions against true labels to identify mismatches
+  4. **Misclassified List Creation**: Store filename, true label, and predicted label for each error
+  
+- **Analysis Performed**:
+  - **Visualization**: Display 5-10 misclassified images in a grid with true vs. predicted labels in red text
+  - **Confusion Pairs**: Extract most common (true_class → predicted_class) confusion patterns
+  - **Per-Class Error Rates**: Calculate error rate for each AQI class:
+    - Count total samples per class in test set
+    - Count errors per class
+    - Compute error rate as: (errors / total_samples) × 100%
+  - **Comparative Visualization**: Bar chart comparing error rates between Basic CNN and EfficientNet-B0 for each class
+  
+- **Key Insights**:
+  - Identifies which AQI classes are harder to distinguish (likely visually similar)
+  - Shows where transfer learning provides advantages over training from scratch
+  - Reveals potential data quality issues or ambiguous samples
+  - Guides future improvements (data augmentation, boundary case handling, etc.)
+
 ---
